@@ -1,8 +1,8 @@
-# php-mvc
+# LifeInvader
 
-A PHP MVC framework
+A post sharing app built on top of a previously created MVC framework.
 
-## Details :
+## MVC framework Details :
 
 ### app/config.php
 
