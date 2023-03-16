@@ -1,6 +1,5 @@
 <?php
 //Base controller : loads models and views, all controllers will extend from here
-
 class Controller
 {
    //load model
