@@ -6,12 +6,12 @@
          <p>Please fill in your credentials to access your account</p>
          <form action="<?php echo URLROOT ?>/users/login" method="post">
             <div class="mb-3">
-               <label for="name">Email: <sup>*</sup></label>
+               <label for="email">Email: <sup>*</sup></label>
                <input type="email" name="email" class="form-control form-control-lg <?php echo (empty($data['email_err'])) ? '' : 'is-invalid' ?> " value="<?php echo $data['email'] ?>">
                <span class="invalid-feedback"><?php echo $data['email_err'] ?></span>
             </div>
             <div class="mb-3">
-               <label for="name">Password: <sup>*</sup></label>
+               <label for="password">Password: <sup>*</sup></label>
                <input type="password" name="password_err" class="form-control form-control-lg <?php echo (empty($data['password_err'])) ? '' : 'is-invalid' ?> " value="<?php echo $data['password'] ?>">
                <span class="invalid-feedback"><?php echo $data['password_err'] ?></span>
             </div>
