@@ -1,8 +1,10 @@
 <?php
 class Users extends Controller
 {
+   public $userModel;
    public function __construct()
    {
+      $this->userModel = $this->model('User');
    }
 
    public function signup()
@@ -29,6 +31,9 @@ class Users extends Controller
          }
          if (empty($data['email'])) {
             $data['email_err'] = 'Please fill in your email';
+            //else check that email is not in db already
+         } else if ($this->userModel->findUserByEmail($data['email'])) {
+            $data['email_err'] = 'Email is already taken!';
          }
          if (empty($data['password'])) {
             $data['password_err'] = 'Please fill in a password';
@@ -41,8 +46,18 @@ class Users extends Controller
             $data['password_conf_err'] = 'Passwords do not match';
          }
 
+         //if no errors
          if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['password_conf_err'])) {
-            die('✅');
+            //hash password 
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+            //user signup
+            if ($this->userModel->signup($data)) {
+               notify('signup_success', 'You are now signed-up and can log-in!');
+               reditrect('users/login');
+            } else {
+               die('❌ something went wrong while loging in');
+            }
          } else {
             $this->view('users/signup', $data);
          }
@@ -60,6 +75,8 @@ class Users extends Controller
          $this->view('users/signup', $data);
       }
    }
+
+
 
    public function login()
    {
@@ -79,10 +96,29 @@ class Users extends Controller
             $data['email_err'] = 'Please fill in your email';
          }
          if (empty($data['password'])) {
-            $data['password_err'] = 'Please fill in a password';
+            $data['password_err'] = 'Please fill in your password';
          }
 
-         $this->view('users/login', $data);
+
+         if ($this->userModel->findUserByEmail($data['email'])) {
+         } else {
+            $data['email_err'] = 'Wrong password or email';
+            $data['password_err'] = 'Wrong password or email';
+         }
+
+         if (empty($data['email_err']) && empty($data['password_err'])) {
+            //check and set logged in user
+            $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+            if ($loggedInUser) {
+               die('🚀');
+            } else {
+               $data['email_err'] = 'Wrong password or email';
+               $data['password_err'] = 'Wrong password or email';
+               $this->view('users/login', $data);
+            }
+         } else {
+            $this->view('users/login', $data);
+         }
       } else {
          $data = [
             'email' => '',

@@ -2,6 +2,7 @@
 <div class="row">
    <div class="col-md-6 mx-auto">
       <div class="card card-body bg-light mt-5">
+         <?php notify('signup_success') ?>
          <h2>Login</h2>
          <p>Please fill in your credentials to access your account</p>
          <form action="<?php echo URLROOT ?>/users/login" method="post">
