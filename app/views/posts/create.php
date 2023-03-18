@@ -4,7 +4,7 @@
    <?php notify('signup_success') ?>
    <h2>Create a post</h2>
    <p>Share your life here!</p>
-   <form action="<?php echo URLROOT ?>/users/login" method="post">
+   <form action="<?php echo URLROOT ?>/posts/create" method="post">
       <div class="mb-3">
          <label for="title">Title: <sup>*</sup></label>
          <input type="test" name="title" class="form-control form-control-lg <?php echo (empty($data['title_err'])) ? '' : 'is-invalid' ?> " value="<?php echo $data['title'] ?>">

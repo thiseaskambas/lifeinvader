@@ -21,12 +21,17 @@ class Posts extends Controller
 
    public function create()
    {
-      $data = [
-         'title' => '',
-         'body' => '',
-         'title_err' => '',
-         'body_err' => ''
-      ];
-      $this->view('posts/create', $data);
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+         //sanitize input
+
+      } else {
+         $data = [
+            'title' => '',
+            'body' => '',
+            'title_err' => '',
+            'body_err' => ''
+         ];
+         $this->view('posts/create', $data);
+      }
    }
 }
