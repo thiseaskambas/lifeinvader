@@ -8,7 +8,9 @@ class Pages extends Controller
    }
    public function index()
    {
-
+      if (isLoggedIn()) {
+         reditrect('posts/index');
+      }
       $data = [
          'title' => 'LifeInvader',
          'subtitle' => 'Join our community of millions of users who love sharing every little detail of their lives.',

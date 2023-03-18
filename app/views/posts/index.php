@@ -4,8 +4,8 @@
       <h1>Posts</h1>
    </div>
    <div class="col-md-6">
-      <a href="<?php echo URLROOT ?>/posts/add" class="btn btn-primary pull-right">
-         <i class="fa fa-pencil"></i> Share a post
+      <a href="<?php echo URLROOT ?>/posts/create" class="btn btn-primary pull-right">
+         <i class="fa fa-pencil"></i> Create a post
       </a>
    </div>
 </div>
@@ -15,8 +15,8 @@
       <div class="bg-light p-2 mb-3">
          shared by <?php echo $post->name; ?> on <?php echo $post->postCreated ?>
       </div>
-      <div class="card-text"><?php echo $post->body ?></div>
-      <a href="<?php echo URLROOT ?>/posts/show" class="btn btn-dark">More</a>
+      <div class="card-text mb-3"><?php echo $post->body ?></div>
+      <a href="<?php echo URLROOT ?>/posts/show" class="btn btn-dark mx-auto px-4">More</a>
    </div>
 <?php endforeach ?>
 <?php require APPROOT . '/views/inc/footer.php' ?>

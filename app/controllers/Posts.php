@@ -18,4 +18,15 @@ class Posts extends Controller
       ];
       $this->view('posts/index', $data);
    }
+
+   public function create()
+   {
+      $data = [
+         'title' => '',
+         'body' => '',
+         'title_err' => '',
+         'body_err' => ''
+      ];
+      $this->view('posts/create', $data);
+   }
 }
