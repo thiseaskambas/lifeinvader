@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
 <a href="<?php echo URLROOT ?>/posts" class="btn btn-light"><i class="fa fa-backward"></i> Go Back</a>
 <div class="card card-body bg-light mt-5">
-   <?php notify('post_edit') ?>
+   <?php notify('post_message') ?>
    <h2>Edit your post</h2>
    <br>
    <form action="<?php echo URLROOT ?>/posts/edit/<?php echo $data['id'] ?>" method="post">

@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
 <div class="row my-4">
-   <?php notify('post_added') ?>
+   <?php notify('post_message') ?>
    <div class="col-md-6">
       <h1>Posts</h1>
    </div>

@@ -46,7 +46,7 @@ class Posts extends Controller
          //check for errors
          if (empty($data['title_err']) && empty($data['body_err'])) {
             if ($this->postModel->addPost($data)) {
-               notify('post_added', 'Your post was succesfully shared');
+               notify('post_message', 'Your post was succesfully shared');
             }
             reditrect('posts');
          } else {
@@ -87,7 +87,7 @@ class Posts extends Controller
          //check for errors
          if (empty($data['title_err']) && empty($data['body_err'])) {
             if ($this->postModel->updatePost($data)) {
-               notify('post_edit', 'Your post was succesfully edited');
+               notify('post_message', 'Your post was succesfully edited');
             }
             reditrect('posts');
          } else {
@@ -119,5 +119,26 @@ class Posts extends Controller
          'user' => $user
       ];
       $this->view('posts/showpost', $data);
+   }
+
+   public function delete($id)
+   {
+
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+         //get existing post
+         $post = $this->postModel->getPostById($id);
+         //authorisation 
+         if ($post->user_id !== $_SESSION['user_id']) {
+            reditrect('posts');
+         }
+         notify('post_message', 'Post deleted.');
+         if ($this->postModel->deletePost($id)) {
+            reditrect('posts/index');
+         } else {
+            die('❌ Whops, something went terribly wrong');
+         }
+      } else {
+         reditrect('posts/index');
+      }
    }
 }
